@@ -13,6 +13,7 @@
 //   limitations under the License.
 
 using System.Collections.Generic;
+using System.Linq;
 using Uol.PagSeguro.Domain.Authorization;
 
 namespace Uol.PagSeguro.Parse
@@ -32,19 +33,19 @@ namespace Uol.PagSeguro.Parse
             IDictionary<string, string> data = new Dictionary<string, string>();
 
             // Reference
-            if (authorizationRequest.Reference)
+            if (!string.IsNullOrEmpty(authorizationRequest.Reference))
                 data["reference"] = authorizationRequest.Reference;
 
             // RedirectURL
-            if (authorizationRequest.RedirectURL)
+            if (!string.IsNullOrEmpty(authorizationRequest.RedirectURL))
                 data["redirectURL"] = authorizationRequest.RedirectURL;
 
             // NotificationURL
-            if (authorizationRequest.NotificationURL)
+            if (!string.IsNullOrEmpty(authorizationRequest.NotificationURL))
                 data["notificationURL"] = authorizationRequest.NotificationURL;
 
             // Permissions
-            if (authorizationRequest.Permissions)
+            if (authorizationRequest.Permissions != null && authorizationRequest.Permissions.Any())
                 data["permissions"] = string.Join(",", authorizationRequest.Permissions.ToArray());
 
             return data;

@@ -215,7 +215,7 @@ namespace Uol.PagSeguro.Domain
             builder.Append('(');
             builder.Append("Code=").Append(this.Code).Append(", ");
             builder.Append("Date=").Append(this.Date).Append(", ");
-            if (this.Reference)
+            if (!string.IsNullOrEmpty(this.Reference))
                 builder.Append("Reference=").Append(this.Reference.ToString()).Append(", ");
             builder.Append("TransactionStatus=").Append(this.TransactionStatus).Append(", ");
             string email = this.Sender == null ? null : this.Sender.Email;

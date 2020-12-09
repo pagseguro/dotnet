@@ -12,6 +12,7 @@
 //   See the License for the specific language governing permissions and
 //   limitation
 
+using System;
 using System.Xml;
 using Uol.PagSeguro.Domain;
 

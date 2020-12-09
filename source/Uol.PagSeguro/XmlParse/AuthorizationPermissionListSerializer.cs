@@ -12,6 +12,7 @@
 //   See the License for the specific language governing permissions and
 //   limitation
 
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using Uol.PagSeguro.Constants;
@@ -64,7 +65,7 @@ namespace Uol.PagSeguro.XmlParse
                         default:
                             XMLParserUtils.SkipElement(reader);
                             throw new InvalidOperationException("Unexpected value");
-                                                }
+                    }
                 }
                 else
                 {

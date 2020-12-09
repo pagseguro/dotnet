@@ -39,13 +39,11 @@ namespace FindPreApprovalByNotification
 
             }
             catch (PagSeguroServiceException exception)
-           {}
-
+            {
                 foreach (ServiceError element in exception.Errors)
                 {
-                 
+
                 }
-               
             }
         }
     }

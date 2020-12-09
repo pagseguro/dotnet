@@ -17,6 +17,7 @@ using Uol.PagSeguro.Domain;
 using Uol.PagSeguro.Util;
 using Uol.PagSeguro.Constants.PreApproval;
 using Uol.PagSeguro.Constants;
+using System.Linq;
 
 namespace Uol.PagSeguro.Parse
 {
@@ -35,30 +36,30 @@ namespace Uol.PagSeguro.Parse
             IDictionary<string, string> data = new Dictionary<string, string>();
 
             // reference
-            if (payment.Reference)
+            if (!string.IsNullOrEmpty(payment.Reference))
                 data["reference"] = payment.Reference;
 
             // sender
-            if (payment.Sender)
+            if (payment.Sender != null)
             {
-                if (payment.Sender.Name)
+                if (!string.IsNullOrEmpty(payment.Sender.Name))
                     data["senderName"] = payment.Sender.Name;
 
-                if (payment.Sender.Email)
+                if (!string.IsNullOrEmpty(payment.Sender.Email))
                     data["senderEmail"] = payment.Sender.Email;
 
                 // phone
-                if (payment.Sender.Phone)
+                if (payment.Sender.Phone != null)
                 {
-                    if (payment.Sender.Phone.AreaCode)
+                    if (!string.IsNullOrEmpty(payment.Sender.Phone.AreaCode))
                         data["senderAreaCode"] = payment.Sender.Phone.AreaCode;
 
-                    if (payment.Sender.Phone.Number)
+                    if (!string.IsNullOrEmpty(payment.Sender.Phone.Number))
                         data["senderPhone"] = payment.Sender.Phone.Number;
                 }
 
                 // documents
-                if (payment.Sender.Documents)
+                if (payment.Sender.Documents != null && payment.Sender.Documents.Any())
                 {
                     var documents = payment.Sender.Documents;
                     if (documents.Count == 1)
@@ -78,7 +79,7 @@ namespace Uol.PagSeguro.Parse
             }
 
             // currency
-            if (payment.Currency)
+            if (!string.IsNullOrEmpty(payment.Currency))
                 data["currency"] = payment.Currency;
 
             // items
@@ -90,16 +91,16 @@ namespace Uol.PagSeguro.Parse
                 {
                     i++;
 
-                    if (item.Id)
+                    if (!string.IsNullOrEmpty(item.Id))
                         data["itemId" + i] = item.Id;
 
-                    if (item.Description)
+                    if (!string.IsNullOrEmpty(item.Description))
                         data["itemDescription" + i] = item.Description;
 
                     data["itemQuantity" + i] = item.Quantity.ToString();
                     data["itemAmount" + i] = PagSeguroUtil.DecimalFormat(item.Amount);
 
-                    if (item.Weight)
+                    if (item.Weight != null)
                         data["itemWeight" + i] = item.Weight.ToString();
 
                     if (item.ShippingCost.HasValue)
@@ -108,7 +109,7 @@ namespace Uol.PagSeguro.Parse
             }
 
             //preApproval
-            if (payment.PreApproval)
+            if (payment.PreApproval != null)
             {
                 data["preApprovalCharge"] = payment.PreApproval.Charge;
                 data["preApprovalName"] = payment.PreApproval.Name;
@@ -141,7 +142,7 @@ namespace Uol.PagSeguro.Parse
             }
 
             //preApproval payment
-            if (payment.PreApprovalCode)
+            if (!string.IsNullOrEmpty(payment.PreApprovalCode))
                 data["preApprovalCode"] = payment.PreApprovalCode;
 
             // extraAmount
@@ -149,7 +150,7 @@ namespace Uol.PagSeguro.Parse
                 data["extraAmount"] = PagSeguroUtil.DecimalFormat(payment.ExtraAmount.Value);
 
             // shipping
-            if (payment.Shipping)
+            if (payment.Shipping != null)
             {
                 if (payment.Shipping.ShippingType.HasValue)
                     data["shippingType"] = payment.Shipping.ShippingType.Value.ToString();
@@ -158,48 +159,48 @@ namespace Uol.PagSeguro.Parse
                     data["shippingCost"] = PagSeguroUtil.DecimalFormat(payment.Shipping.Cost.Value);
 
                 // address
-                if (payment.Shipping.Address)
+                if (payment.Shipping.Address != null)
                 {
-                    if (payment.Shipping.Address.Street)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.Street))
                         data["shippingAddressStreet"] = payment.Shipping.Address.Street;
 
-                    if (payment.Shipping.Address.Number)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.Number))
                         data["shippingAddressNumber"] = payment.Shipping.Address.Number;
 
-                    if (payment.Shipping.Address.Complement)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.Complement))
                         data["shippingAddressComplement"] = payment.Shipping.Address.Complement;
 
-                    if (payment.Shipping.Address.City)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.City))
                         data["shippingAddressCity"] = payment.Shipping.Address.City;
 
-                    if (payment.Shipping.Address.State)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.State))
                         data["shippingAddressState"] = payment.Shipping.Address.State;
 
-                    if (payment.Shipping.Address.District)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.District))
                         data["shippingAddressDistrict"] = payment.Shipping.Address.District;
 
-                    if (payment.Shipping.Address.PostalCode)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.PostalCode))
                         data["shippingAddressPostalCode"] = payment.Shipping.Address.PostalCode;
 
-                    if (payment.Shipping.Address.Country)
+                    if (!string.IsNullOrEmpty(payment.Shipping.Address.Country))
                         data["shippingAddressCountry"] = payment.Shipping.Address.Country;
                 }
             }
 
             // maxAge
-            if (payment.MaxAge)
+            if (payment.MaxAge != null)
                 data["maxAge"] = payment.MaxAge.ToString();
 
             // maxUses
-            if (payment.MaxUses)
+            if (payment.MaxUses != null)
                 data["maxUses"] = payment.MaxUses.ToString();
 
             // redirectURL
-            if (payment.RedirectUri)
+            if (payment.RedirectUri != null)
                 data["redirectURL"] = payment.RedirectUri.ToString();
 
             // notificationURL
-            if (payment.NotificationUrl)
+            if (!string.IsNullOrEmpty(payment.NotificationUrl))
                 data["notificationURL"] = payment.NotificationUrl;
 
             // metadata
@@ -216,7 +217,7 @@ namespace Uol.PagSeguro.Parse
                     data["metadataItemKey" + i] = item.Key;
                     data["metadataItemValue" + i] = item.Value;
 
-                    if (item.Group)
+                    if (item.Group != null)
                         data["metadataItemGroup" + i] = item.Group.ToString();
                 }
             }
@@ -230,7 +231,7 @@ namespace Uol.PagSeguro.Parse
                     if (PagSeguroUtil.IsEmpty(item.Key) || PagSeguroUtil.IsEmpty(item.Value))
                         continue;
 
-                    if (item.Group)
+                    if (item.Group != null)
                         data[item.Key + "" + item.Group] = item.Value;
                     else
                         data[item.Key] = item.Value;

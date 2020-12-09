@@ -87,7 +87,7 @@ namespace Uol.PagSeguro.Domain.Authorization
         /// </summary>
         public void addPermission(String permission)
         {
-            if (Permissions)
+            if (Permissions.Count > 0)
             {
                 this.Permissions.Add(permission);
             }

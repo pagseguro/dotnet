@@ -90,7 +90,7 @@ namespace Uol.PagSeguro.Domain.Authorization
             builder.Append("Code=").Append(this.Code).Append(", ");
             builder.Append("CreationDate=").Append(this.CreationDate).Append(", ");
             builder.Append("Reference=").Append(this.Reference).Append(", ");
-            if (this.Account) {
+            if (this.Account != null) {
                 builder.Append("PublicKey=").Append(this.Account.PublicKey).Append(", ");
             } else  {
                 builder.Append("PublicKey=").Append("").Append(", ");

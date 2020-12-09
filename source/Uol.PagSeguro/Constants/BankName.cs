@@ -28,39 +28,39 @@ namespace Uol.PagSeguro.Constants
         /// </summary>
         public static string Bradesco
 
-    {
-      get { return "bradesco"; }
-    }
+        {
+            get { return "bradesco"; }
+        }
 
         /// <summary>
         /// Itaú
         /// </summary>
-        public const string Itau
-    {
-      get { return "itau"; }
-    }
+        public static string Itau
+        {
+            get { return "itau"; }
+        }
         /// <summary>
         /// Banco do Brasil
         /// </summary>
         public static string BancoDoBrasil
-    {
-      get { return "bancodobrasil"; }
-    }
+        {
+            get { return "bancodobrasil"; }
+        }
 
         /// <summary>
         /// Banrisul
         /// </summary>
         public static string Banrisul
-      {
-      get { return "banrisul"; }
-    }
-      /// <summary>
+        {
+            get { return "banrisul"; }
+        }
+        /// <summary>
         /// HSBC
         /// </summary>
         public static string HSBC
-    {
-      get { return "hsbc"; }
-    }
-      
+        {
+            get { return "hsbc"; }
+        }
+
     }
 }

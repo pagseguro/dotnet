@@ -37,12 +37,11 @@ namespace DocExamples
                     );
 
             paymentRequest.Sender = sender;
-            if (paymentRequest.Sender)
+
+            if (paymentRequest.Sender != null)
             {
-
-                if (paymentRequest.Sender.Phone)
+                if (paymentRequest.Sender.Phone != null)
                 {
-
                 }
             }
 
@@ -219,10 +218,10 @@ namespace DocExamples
 
         static void Shipping2Example(Transaction transaction)
         {
-            if (transaction.Shipping)
+            if (transaction.Shipping != null)
             {
 
-                if (transaction.Shipping.Address)
+                if (transaction.Shipping.Address != null)
                 {
 
                 }

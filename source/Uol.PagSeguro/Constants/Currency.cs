@@ -23,9 +23,9 @@ namespace Uol.PagSeguro.Constants
         /// <summary>
         /// Brazilian Real
         /// </summary>
-        public const string Brl
-    {
-      get { return "BRL"; }
-    }
+        public static string Brl
+        {
+            get { return "BRL"; }
+        }
     }
 }

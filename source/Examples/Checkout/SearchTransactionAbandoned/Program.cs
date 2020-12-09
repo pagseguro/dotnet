@@ -58,7 +58,7 @@ namespace SearchTransactionAbandoned
 
                 if (result.Transactions.Count <= 0)
                 {
-                    e("Nenhuma transação abandonada");
+                    throw new Exception("Nenhuma transação abandonada");
                 }
 
                 foreach (TransactionSummary transaction in result.Transactions)
