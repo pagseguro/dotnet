@@ -118,7 +118,7 @@ namespace CreatePayment
                 /// This configuration let you set your credentials from your ".cs" file.
                 AccountCredentials credentials = new AccountCredentials("backoffice@lojamodelo.com.br", "256422BF9E66458CA3FE41189AD1C94A");
 
-                /// @todo with you want to get credentials from xml config file uncommend the line below and comment the line above.
+                /// @todo with you want to get credentials from xml config file uncomment the line below and comment the line above.
                 //AccountCredentials credentials = PagSeguroConfiguration.Credentials(isSandbox);
 
                 Uri paymentRedirectUri = payment.Register(credentials);
